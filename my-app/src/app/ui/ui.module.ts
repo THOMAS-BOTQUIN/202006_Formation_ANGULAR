@@ -11,8 +11,6 @@ import { IconsModule } from '../icons/icons.module';
     CommonModule,
     IconsModule
   ],
-  exports: [
-    UiComponent
-  ]
+  exports: [UiComponent]
 })
 export class UiModule { }
