@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.title = "Ma super App Angular";
+    this.title = "Ma super app Angular";
   }
 
 }
