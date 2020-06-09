@@ -9,7 +9,6 @@ import { TextModule } from './text/text.module';
 import { IconsModule } from './icons/icons.module';
 import { CoreModule } from './core/core.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -17,12 +16,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     UiModule,
     LoginModule,
     TextModule,
     IconsModule,
     CoreModule,
+    AppRoutingModule,
     NgbModule
   ],
   providers: [],
