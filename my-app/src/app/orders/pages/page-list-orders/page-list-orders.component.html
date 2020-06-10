@@ -1,1 +1,17 @@
-<p>page-list-orders works!</p>
+<app-table-light *ngIf="collection" [headers]="headers">
+  <tr *ngFor="let item of collection">
+    <!--          <td *ngFor="let hItem of headers">
+                {{ (hItem.currency != null) ? (item[hItem.property] | currency:hItem.currency) : (item[hItem.property]) }}
+    -->
+    <td>{{ item.typePresta }}</td>
+    <td>{{ item.nbJours }}</td>
+    <td>{{ item.tva }}</td>
+    <td>{{ item.tjmHt }}</td>
+    <td>{{ item.state }}</td>
+    <td>{{ item.client }}</td>
+    <td>{{ item.comment }}</td>
+    <td>{{ item.id }}</td>
+    <td>{{ item | total | currency: 'EUR' }}</td>
+    <td>{{ item | total: 'ttc' | currency: 'EUR' }}</td>
+  </tr>
+</app-table-light>
