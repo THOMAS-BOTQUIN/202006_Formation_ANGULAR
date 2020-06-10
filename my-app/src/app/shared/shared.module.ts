@@ -7,16 +7,17 @@ import { StateDirective } from './directives/state.directive';
 import { GreaterDirective } from './directives/greater.directive';
 import { TableDarkComponent } from './components/table-dark/table-dark.component';
 import { RouterModule } from '@angular/router';
+import { ActiveDirective } from './directives/active.directive';
 
 
 
 @NgModule({
-  declarations: [TableLightComponent, BtnComponent, TotalPipe, StateDirective, GreaterDirective, TableDarkComponent],
+  declarations: [TableLightComponent, BtnComponent, TotalPipe, StateDirective, GreaterDirective, TableDarkComponent, ActiveDirective],
   imports: [
     CommonModule, RouterModule
   ],
   exports: [
-    TableLightComponent, BtnComponent, TotalPipe, StateDirective, GreaterDirective, TableDarkComponent
+    TableLightComponent, BtnComponent, TotalPipe, StateDirective, GreaterDirective, TableDarkComponent, ActiveDirective
   ]
 })
 export class SharedModule { }

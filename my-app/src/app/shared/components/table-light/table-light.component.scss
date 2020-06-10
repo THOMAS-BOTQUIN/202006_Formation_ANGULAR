@@ -16,4 +16,10 @@
   .greater-success {
     background-color : $color-success
   }
+  .class-active {
+    text-decoration: none;
+  }
+  .class-inactive {
+    text-decoration: line-through;
+  }
 }

@@ -2,8 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { OrdersService } from '../../services/orders.service'
 import { Order } from 'src/app/shared/models/orders';
 import { StateOrder } from 'src/app/shared/enums/state-order.enum';
-import { BtnComponent } from 'src/app/shared/components/btn/btn.component';
-import { BtnI, Btn } from 'src/app/shared/interfaces/btn-i';
+import { Btn } from 'src/app/shared/interfaces/btn-i';
 
 @Component({
   selector: 'app-page-list-orders',
