@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { OrdersService } from '../../services/orders.service'
 import { Order } from 'src/app/shared/models/orders';
 import { StateOrder } from 'src/app/shared/enums/state-order.enum';
+import { BtnComponent } from 'src/app/shared/components/btn/btn.component';
+import { BtnI, Btn } from 'src/app/shared/interfaces/btn-i';
 
 @Component({
   selector: 'app-page-list-orders',
@@ -12,6 +14,10 @@ export class PageListOrdersComponent implements OnInit {
   public collection : Order[];
   public headers: string[];
   public states = Object.values(StateOrder);
+
+  public btnRoute: Btn;
+  public btnHref: Btn;
+  public btnAction: Btn;
 
   constructor(private os: OrdersService) { }
 
@@ -31,35 +37,27 @@ export class PageListOrdersComponent implements OnInit {
       "Total TTC",
       "State"
     ];
-   /*
-    this.headers = [
-      "tjmHT",
-      "nbJours",
-      "tva",
-      "state",
-      "typePresta",
-      "client",
-      "comment",
-      "id"
-    ];
-    */
-   /*
-   this.headers = [
-      { title: "Type Presta", property: "typePresta", currency: null},
-      { title: "Client", property: "nbJours", currency: null},
-      { title: "TVA", property: "tva", currency: null},
-      { title: "TJM HT", property: "tjmHt", currency: "EUR"},
-      { title: "State", property: "state", currency: null},
-      { title: "Client", property: "client", currency: null},
-      { title: "Comment", property: "comment", currency: null},
-      { title: "ID", property: "id", currency: null}
-    ];
-    */
+    this.btnRoute = {
+      label: "Add an order",
+      route: "add"
+    }
+    this.btnHref = {
+      label: "Go to Qwant",
+      href: "http://qwant.fr"
+    }
+    this.btnAction = {
+      label: "Open dialog",
+      action: true
+    }
   }
 
   public changeState(item: Order, event){
     this.os.changeState(item, event.target.value).subscribe((result) => {
       item.state = result.state
     });
+  }
+
+  public openPopUp() {
+    console.log("Open popup");
   }
 }
