@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { OrdersService } from '../../services/orders.service'
 import { Order } from 'src/app/shared/models/orders';
 import { StateOrder } from 'src/app/shared/enums/state-order.enum';
@@ -21,15 +21,15 @@ export class PageListOrdersComponent implements OnInit {
     });
     this.headers = [
       "Type Presta",
-      "TJM HT",
       "Nb Jours",
       "TVA",
-      "State",
+      "TJM HT",
       "Client",
       "Comment",
       "ID",
       "Total HT",
-      "Total TTC"
+      "Total TTC",
+      "State"
     ];
    /*
     this.headers = [

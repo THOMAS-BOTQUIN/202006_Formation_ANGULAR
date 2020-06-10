@@ -1,10 +1,10 @@
-<app-table-light *ngIf="collection" [headers]="headers">
+<app-table-dark *ngIf="collection" [headers]="headers">
   <tr *ngFor="let item of collection">
     <!--          <td *ngFor="let hItem of headers">
                 {{ (hItem.currency != null) ? (item[hItem.property] | currency:hItem.currency) : (item[hItem.property]) }}
     -->
     <td>{{ item.typePresta }}</td>
-    <td>{{ item.nbJours }}</td>
+    <td appGreater [appGreaterAttr]="item.nbJours" [appGreaterSeuil]="3">{{ item.nbJours }}</td>
     <td>{{ item.tva }}</td>
     <td>{{ item.tjmHt }}</td>
     <td>{{ item.client }}</td>
@@ -12,10 +12,10 @@
     <td>{{ item.id }}</td>
     <td>{{ item | total | currency: 'EUR' }}</td>
     <td>{{ item | total: 'ttc' | currency: 'EUR' }}</td>
-    <td>
+    <td [appState]="item.state">
       <select (change)="changeState(item, $event)">
         <option *ngFor="let state of states" [value]="state" [selected]="item.state === state">{{ state }}</option>
       </select>
     </td>
   </tr>
-</app-table-light>
+</app-table-dark>
