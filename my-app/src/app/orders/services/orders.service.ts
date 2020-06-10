@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators'
+import { StateOrder } from 'src/app/shared/enums/state-order.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,16 @@ export class OrdersService {
   }
 
   // update item
+  private updateItem(item: Order) : Observable<Order> {
+    return this.http.put<Order>(`${this.urlApi}orders/${item.id}`, item);
+  }
+  public changeState(item: Order, state: StateOrder) : Observable<Order> {
+    // on clone l'objet, car même en cas de plantage http, on aurait mis à jour l'objet initial
+    const obj = new Order({...item});
+    obj.state = state;
+    return this.updateItem(obj);
+//    return this.http.put<Order>(`${this.urlApi}orders/${obj.id}`, obj);
+  }
 
   // add item
 
