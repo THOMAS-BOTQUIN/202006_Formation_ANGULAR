@@ -1,41 +1,29 @@
-<app-template-a title="Orders" subtitle="All orders">
-  <app-table-dark *ngIf="collection$ | async as collection" [headers]="headers">
-    <tr *ngFor="let item of collection">
-      <!--          <td *ngFor="let hItem of headers">
-                  {{ (hItem.currency != null) ? (item[hItem.property] | currency:hItem.currency) : (item[hItem.property]) }}
-      -->
-      <td>{{ item.typePresta }}</td>
-      <td appGreater [appGreaterAttr]="item.nbJours" [appGreaterSeuil]="3">{{ item.nbJours }}</td>
-      <td>{{ item.tva }}</td>
-      <td>{{ item.tjmHt }}</td>
-      <td>{{ item.client }}</td>
-      <td>{{ item.comment }}</td>
-      <td>{{ item.id }}</td>
-      <td>{{ item | total | currency: 'EUR' }}</td>
-      <td>{{ item | total: 'ttc' | currency: 'EUR' }}</td>
-      <td [appState]="item.state">
-        <select (change)="changeState(item, $event)">
-          <option *ngFor="let state of states" [value]="state" [selected]="item.state === state">{{ state }}</option>
-        </select>
-      </td>
-    </tr>
-  </app-table-dark>
-  <app-btn [label]="btnRoute.label" [route]="btnRoute.route"></app-btn>
-  <app-btn [label]="btnHref.label" [href]="btnHref.href"></app-btn>
-  <app-btn [label]="btnAction.label" [action]="btnAction.action" (clicked)="openPopUp()"></app-btn>
-</app-template-a>
+<app-template-c title="Orders">
+  <div body>
+    <app-table-dark *ngIf="collection$ | async as collection" [headers]="headers">
+      <tr *ngFor="let item of collection">
+        <td>{{ item.typePresta }}</td>
+        <td appGreater [appGreaterAttr]="item.nbJours" [appGreaterSeuil]="3">{{ item.nbJours }}</td>
+        <td>{{ item.tva }}</td>
+        <td>{{ item.tjmHt }}</td>
+        <td>{{ item.client }}</td>
+        <td>{{ item.comment }}</td>
+        <td>{{ item.id }}</td>
+        <td>{{ item | total | currency: 'EUR' }}</td>
+        <td>{{ item | total: 'ttc' | currency: 'EUR' }}</td>
+        <td [appState]="item.state">
+          <select (change)="changeState(item, $event)">
+            <option *ngFor="let state of states" [value]="state" [selected]="item.state === state">{{ state }}</option>
+          </select>
+        </td>
+      </tr>
+    </app-table-dark>
+  </div>
 
-<app-text [page]="true">
-  <h1>Titre</h1>
-  <h2>Sous-titre</h2>
-  <h3>Sous-sous-titre</h3>
-  <p>Paragraphe</p>
-</app-text>
+  <div footer>
+    <app-btn [label]="btnRoute.label" [route]="btnRoute.route"></app-btn>
+    <app-btn [label]="btnHref.label" [href]="btnHref.href"></app-btn>
+    <app-btn [label]="btnAction.label" [action]="btnAction.action" (clicked)="openPopUp()"></app-btn>
+  </div>
 
-
-<app-text>
-  <h1>Titre</h1>
-  <h2>Sous-titre</h2>
-  <h3>Sous-sous-titre</h3>
-  <p>Paragraphe</p>
-</app-text>
+</app-template-c>

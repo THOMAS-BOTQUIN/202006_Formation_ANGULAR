@@ -32,3 +32,17 @@ app-template-a {
     }
   }
 }
+app-template-b {
+  .table-dark {
+    .state-option {
+      background-color: $color2;
+    }
+  }
+}
+app-template-c {
+  .table-dark {
+    .state-option {
+      background-color: $color1;
+    }
+  }
+}

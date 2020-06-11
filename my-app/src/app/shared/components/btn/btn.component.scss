@@ -32,3 +32,11 @@ a, button {
     }
   }
 }
+:host-context(app-template-c) {
+  a, button {
+    background: $color1;
+    &:hover {
+      background: darken($color1, 10);
+    }
+  }
+}
