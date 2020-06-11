@@ -1,4 +1,4 @@
-<app-table-dark *ngIf="collection" [headers]="headers">
+<app-table-dark *ngIf="collection$ | async as collection" [headers]="headers">
   <tr *ngFor="let item of collection">
     <!--          <td *ngFor="let hItem of headers">
                 {{ (hItem.currency != null) ? (item[hItem.property] | currency:hItem.currency) : (item[hItem.property]) }}

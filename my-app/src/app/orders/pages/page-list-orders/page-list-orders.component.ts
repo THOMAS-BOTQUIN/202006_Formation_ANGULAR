@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+
 import { OrdersService } from '../../services/orders.service'
 import { Order } from 'src/app/shared/models/orders';
 import { StateOrder } from 'src/app/shared/enums/state-order.enum';
 import { Btn } from 'src/app/shared/interfaces/btn-i';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-page-list-orders',
@@ -10,7 +12,8 @@ import { Btn } from 'src/app/shared/interfaces/btn-i';
   styleUrls: ['./page-list-orders.component.scss']
 })
 export class PageListOrdersComponent implements OnInit {
-  public collection : Order[];
+  public collection$: Observable<Order[]>;
+  // public collection : Order[];
   public headers: string[];
   public states = Object.values(StateOrder);
 
@@ -21,9 +24,10 @@ export class PageListOrdersComponent implements OnInit {
   constructor(private os: OrdersService) { }
 
   ngOnInit(): void {
-    this.os.collection.subscribe((datas) => {
-      this.collection = datas;
-    });
+    // this.os.collection.subscribe((datas) => {
+    //   this.collection = datas;
+    // });
+    this.collection$ = this.os.collection; // utilisation du pipe async afin de gérer les (un-)subscribe
     this.headers = [
       "Type Presta",
       "Nb Jours",
