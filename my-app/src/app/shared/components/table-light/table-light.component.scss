@@ -23,3 +23,11 @@
     text-decoration: line-through;
   }
 }
+
+app-template-a {
+  .table-light {
+    .state-option {
+      background-color: $color1;
+    }
+  }
+}

@@ -1,17 +1,19 @@
-<app-table-dark *ngIf="collection" [headers]="headers">
-  <tr appActive *ngFor="let item of collection" [appActiveState]="item.state">
-    <td>
-      <select (change)="changeState(item, $event)">
-        <option *ngFor="let state of states" [value]="state" [selected]="item.state === state">{{ state }}</option>
-      </select>
-    </td>
-    <td>{{ item.tva }}</td>
-    <td>{{ item.id }}</td>
-    <td>{{ item.name }}</td>
-    <td>{{ item.ca | currency:"EUR" }}</td>
-    <td>{{ item.comment }}</td>
-  </tr>
-</app-table-dark>
-<app-btn [label]="btnRoute.label" [route]="btnRoute.route"></app-btn>
-<app-btn [label]="btnHref.label" [href]="btnHref.href"></app-btn>
-<app-btn [label]="btnAction.label" [action]="btnAction.action" (clicked)="openPopUp()"></app-btn>
+<app-template-b title="Clients" subtitle="All clients">
+  <app-table-dark *ngIf="collection" [headers]="headers">
+    <tr appActive *ngFor="let item of collection" [appActiveState]="item.state">
+      <td>
+        <select (change)="changeState(item, $event)">
+          <option *ngFor="let state of states" [value]="state" [selected]="item.state === state">{{ state }}</option>
+        </select>
+      </td>
+      <td>{{ item.tva }}</td>
+      <td>{{ item.id }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.ca | currency:"EUR" }}</td>
+      <td>{{ item.comment }}</td>
+    </tr>
+  </app-table-dark>
+  <app-btn [label]="btnRoute.label" [route]="btnRoute.route"></app-btn>
+  <app-btn [label]="btnHref.label" [href]="btnHref.href"></app-btn>
+  <app-btn [label]="btnAction.label" [action]="btnAction.action" (clicked)="openPopUp()"></app-btn>
+</app-template-b>
