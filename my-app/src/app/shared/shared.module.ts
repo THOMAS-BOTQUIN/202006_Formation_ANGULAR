@@ -9,16 +9,17 @@ import { TableDarkComponent } from './components/table-dark/table-dark.component
 import { RouterModule } from '@angular/router';
 import { ActiveDirective } from './directives/active.directive';
 import { TemplatesModule } from '../templates/templates.module';
+import { TextModule } from '../text/text.module';
 
 
 
 @NgModule({
   declarations: [TableLightComponent, BtnComponent, TotalPipe, StateDirective, GreaterDirective, TableDarkComponent, ActiveDirective],
   imports: [
-    CommonModule, RouterModule, TemplatesModule
+    CommonModule, RouterModule, TemplatesModule, TextModule
   ],
   exports: [
-    TableLightComponent, BtnComponent, TotalPipe, StateDirective, GreaterDirective, TableDarkComponent, ActiveDirective, TemplatesModule
+    TableLightComponent, BtnComponent, TotalPipe, StateDirective, GreaterDirective, TableDarkComponent, ActiveDirective, TemplatesModule, TextModule
   ]
 })
 export class SharedModule { }
