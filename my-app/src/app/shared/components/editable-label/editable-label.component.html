@@ -1,0 +1,4 @@
+<div [ngClass]="{'hiddenDiv':isEditing(item, fieldName)}" [id]="getFieldId(item, fieldName)" (click)="onClick(item, $event)">{{ item[fieldName] }}</div>
+<div [ngClass]="{'hiddenDiv':!isEditing(item, fieldName)}" [id]="getFieldId(item, fieldName + 'Input')">
+  <input [type]="type" [value]="item[fieldName]" (blur)="changeField(item, fieldName, $event)" (focusout)="changeField(item, fieldName, $event)"/>
+</div>

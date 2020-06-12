@@ -41,9 +41,9 @@ export class PageListClientsComponent implements OnInit {
     // utilisation du "pipe async" dans le html afin de gérer les (un-)subscribe
 
     this.headers = [
+      "ID",
       "State",
       "TVA",
-      "ID",
       "Name",
       "CA",
       "Comment"
@@ -103,6 +103,17 @@ export class PageListClientsComponent implements OnInit {
       this.cs.collection.subscribe((col) => {
         this.collection$.next(col);
         this.editingId = null;
+      })
+    });
+  }
+
+  public changeField(item: Client, fieldName: string, event) {
+    const obj = new Client({...item});
+    obj[fieldName] = event.target.value;
+    this.editingId = null;
+    this.cs.updateItem(obj).subscribe((result) => {
+      this.cs.collection.subscribe((col) => {
+        this.collection$.next(col);
       })
     });
   }

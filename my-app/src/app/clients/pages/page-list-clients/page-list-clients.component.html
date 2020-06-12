@@ -3,24 +3,73 @@
     <tr appActive *ngFor="let item of collection" [appActiveState]="item.state"
       (contextmenu)="onRightClick(item, $event)"
       (dblclick)="onDblClick(item, $event)"
-      placement="left" ngbTooltip="Right-click to delete. Simple-click to edit a field. Dbl-click to full edit.">
+      placement="left" ngbTooltip="Simple-click to edit a field. Double-click to full edit. Right-click to delete.">
+      <td>{{ item.id }}</td>
       <td>
-        <select (change)="changeState(item, $event)">
-          <option *ngFor="let state of states" [value]="state" [selected]="item.state === state">{{ state }}</option>
-        </select>
+        <div [ngClass]="{'hiddenDiv':isEditing(item, 'state')}" [id]="getFieldId(item, 'state')" (click)="onClick(item, $event)">{{ item.state }}</div>
+        <div [ngClass]="{'hiddenDiv':!isEditing(item, 'state')}" [id]="getFieldId(item, 'stateInput')">
+          <select (change)="changeState(item, $event)">
+            <option *ngFor="let state of states" [value]="state" [selected]="item.state === state">{{ state }}</option>
+          </select>
+        </div>
       </td>
       <td>
         <div [ngClass]="{'hiddenDiv':isEditing(item, 'tva')}" [id]="getFieldId(item, 'tva')" (click)="onClick(item, $event)">{{ item.tva }}</div>
-        <div [ngClass]="{'hiddenDiv':!isEditing(item, 'tva')}" [id]="getFieldId(item, 'tvaInput')"><input type="number" [value]="item.tva" (focusout)="changeTva(item, $event)"/></div>
+        <div [ngClass]="{'hiddenDiv':!isEditing(item, 'tva')}" [id]="getFieldId(item, 'tvaInput')">
+          <input type="number" [value]="item.tva" (blur)="changeField(item, 'tva', $event)" (keyup.enter)="changeField(item, 'tva', $event)"/>
+        </div>
       </td>
-      <td>{{ item.id }}</td>
-      <td>{{ item.name }}</td>
-      <td>{{ item.ca | currency:"EUR" }}</td>
-      <td>{{ item.comment }}</td>
+      <td>
+        <div [ngClass]="{'hiddenDiv':isEditing(item, 'name')}" [id]="getFieldId(item, 'name')" (click)="onClick(item, $event)">{{ item.name }}</div>
+        <div [ngClass]="{'hiddenDiv':!isEditing(item, 'name')}" [id]="getFieldId(item, 'nameInput')">
+          <input type="string" [value]="item.name" (blur)="changeField(item, 'name', $event)"/>
+        </div>
+      </td>
+      <td>
+        <div [ngClass]="{'hiddenDiv':isEditing(item, 'ca')}" [id]="getFieldId(item, 'ca')" (click)="onClick(item, $event)">{{ item.ca | currency:"EUR" }}</div>
+        <div [ngClass]="{'hiddenDiv':!isEditing(item, 'ca')}" [id]="getFieldId(item, 'caInput')">
+          <input type="string" [value]="item.ca" (blur)="changeField(item, 'ca', $event)"/>
+        </div>
+      </td>
+      <td>
+        <div [ngClass]="{'hiddenDiv':isEditing(item, 'comment')}" [id]="getFieldId(item, 'comment')" (click)="onClick(item, $event)">{{ item.comment }}</div>
+        <div [ngClass]="{'hiddenDiv':!isEditing(item, 'comment')}" [id]="getFieldId(item, 'commentInput')">
+          <input type="string" [value]="item.comment" (blur)="changeField(item, 'comment', $event)"/>
+        </div>
+      </td>
     </tr>
   </app-table-dark>
   <app-btn [label]="btnRoute.label" [route]="btnRoute.route"></app-btn>
   <app-btn [label]="btnHref.label" [href]="btnHref.href"></app-btn>
   <app-btn [label]="btnAction.label" [action]="btnAction.action" (clicked)="openPopUp()"></app-btn>
+
+  <app-table-dark *ngIf="collection$ | async as collection" [headers]="headers">
+    <tr appActive *ngFor="let item of collection" [appActiveState]="item.state"
+      (contextmenu)="onRightClick(item, $event)"
+      (dblclick)="onDblClick(item, $event)"
+      placement="left" ngbTooltip="Simple-click to edit a field. Double-click to full edit. Right-click to delete.">
+      <td>{{ item.id }}</td>
+      <td>
+        <div [ngClass]="{'hiddenDiv':isEditing(item, 'state')}" [id]="getFieldId(item, 'state')" (click)="onClick(item, $event)">{{ item.state }}</div>
+        <div [ngClass]="{'hiddenDiv':!isEditing(item, 'state')}" [id]="getFieldId(item, 'stateInput')">
+          <select (change)="changeState(item, $event)">
+            <option *ngFor="let state of states" [value]="state" [selected]="item.state === state">{{ state }}</option>
+          </select>
+        </div>
+      </td>
+      <td>
+        <app-editable-label [type]="'text'" [item]="item" [fieldName]="'tva'" (modify)="changeField(item, 'tva', $event)"></app-editable-label>
+      </td>
+      <td>
+        <app-editable-label [type]="'text'" [item]="item" [fieldName]="'name'" (modify)="changeField(item, 'tva', $event)"></app-editable-label>
+      </td>
+      <td>
+        <app-editable-label [type]="'text'" [item]="item" [fieldName]="'ca'" (modify)="changeField(item, 'tva', $event)"></app-editable-label>
+      </td>
+      <td>
+        <app-editable-label [type]="'text'" [item]="item" [fieldName]="'comment'" (modify)="changeField(item, 'tva', $event)"></app-editable-label>
+      </td>
+    </tr>
+  </app-table-dark>
 
 </app-template-b>

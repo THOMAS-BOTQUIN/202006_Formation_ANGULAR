@@ -11,16 +11,17 @@ import { ActiveDirective } from './directives/active.directive';
 import { TemplatesModule } from '../templates/templates.module';
 import { TextModule } from '../text/text.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditableLabelComponent } from './components/editable-label/editable-label.component';
 
 
 
 @NgModule({
-  declarations: [TableLightComponent, BtnComponent, TotalPipe, StateDirective, GreaterDirective, TableDarkComponent, ActiveDirective],
+  declarations: [TableLightComponent, BtnComponent, TotalPipe, StateDirective, GreaterDirective, TableDarkComponent, ActiveDirective, EditableLabelComponent],
   imports: [
     CommonModule, RouterModule, TemplatesModule, TextModule, NgbModule
   ],
   exports: [
-    TableLightComponent, BtnComponent, TotalPipe, StateDirective, GreaterDirective, TableDarkComponent, ActiveDirective, TemplatesModule, TextModule, NgbModule
+    TableLightComponent, BtnComponent, TotalPipe, StateDirective, GreaterDirective, TableDarkComponent, ActiveDirective, TemplatesModule, TextModule, NgbModule, EditableLabelComponent
   ]
 })
 export class SharedModule { }

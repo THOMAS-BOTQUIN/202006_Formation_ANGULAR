@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormEditClientComponent } from './form-edit-client.component';
+import { EditableLabelComponent } from './editable-label.component';
 
-describe('FormEditClientComponent', () => {
-  let component: FormEditClientComponent;
-  let fixture: ComponentFixture<FormEditClientComponent>;
+describe('EditableLabelComponent', () => {
+  let component: EditableLabelComponent;
+  let fixture: ComponentFixture<EditableLabelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormEditClientComponent ]
+      declarations: [ EditableLabelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormEditClientComponent);
+    fixture = TestBed.createComponent(EditableLabelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

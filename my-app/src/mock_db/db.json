@@ -73,24 +73,8 @@
   ],
   "clients": [
     {
-      "state": "Inactive",
-      "tva": 20,
-      "id": 1,
-      "name": "Christophe2",
-      "ca": 12000,
-      "comment": "un comment pour client christophe2"
-    },
-    {
       "state": "Active",
-      "tva": 20,
-      "id": 2,
-      "name": "Modis",
-      "ca": 120000,
-      "comment": "un comment pour client modis"
-    },
-    {
-      "state": "Active",
-      "tva": 20,
+      "tva": "20",
       "id": 4,
       "name": "HK-47",
       "ca": "10000",
@@ -98,19 +82,11 @@
     },
     {
       "state": "Active",
-      "tva": 20,
-      "id": 5,
-      "name": "dsqdqs",
-      "ca": "10000",
-      "comment": "TESFQSSQGVX"
-    },
-    {
-      "state": "Active",
-      "tva": 20,
+      "tva": "22",
       "id": 7,
-      "name": "dqsdsq",
-      "ca": 10000,
-      "comment": "dsdqsdsq"
+      "name": "Bastila",
+      "ca": "15000",
+      "comment": "Shan"
     },
     {
       "state": "Active",
@@ -122,18 +98,18 @@
     },
     {
       "state": "Active",
-      "tva": "15",
+      "tva": "25",
       "id": 9,
       "name": "Hermit",
-      "ca": 10000,
+      "ca": "10000",
       "comment": "Herman's yoda"
     },
     {
       "state": "Active",
-      "tva": "20",
+      "tva": "25",
       "id": 10,
-      "name": "gfdgfdg",
-      "ca": 10000,
+      "name": "Coruscent Police Officer",
+      "ca": "7000",
       "comment": "dsqdqs"
     }
   ]
