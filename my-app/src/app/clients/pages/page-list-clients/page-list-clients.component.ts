@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ClientsService } from '../../services/clients.service';
 import { Client } from 'src/app/shared/models/clients';
 import { Btn } from 'src/app/shared/interfaces/btn-i';
 import { StateClient } from 'src/app/shared/enums/state-client.enum';
+import { Observable, Subject } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-page-list-clients',
@@ -10,7 +12,10 @@ import { StateClient } from 'src/app/shared/enums/state-client.enum';
   styleUrls: ['./page-list-clients.component.scss']
 })
 export class PageListClientsComponent implements OnInit {
-  public collection : Client[];
+  public collection$ : Subject<Client[]> = new Subject();
+  private collectionSubject = new Subject();
+
+//  public collection : Client[];
   public headers: string[];
   public states = Object.values(StateClient);
 
@@ -18,12 +23,23 @@ export class PageListClientsComponent implements OnInit {
   public btnHref: Btn;
   public btnAction: Btn;
 
-  constructor(private cs: ClientsService) { }
+  editingId: string;
+
+  constructor(
+    private cs: ClientsService,
+    private router : Router,
+    private route : ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
-    this.cs.collection.subscribe((datas) => {
-      this.collection = datas;
+    // this.cs.collection.subscribe((datas) => {
+    //   this.collection = datas;
+    // });
+    this.cs.collection.subscribe((col) => {
+      this.collection$.next(col);
     });
+    // utilisation du "pipe async" dans le html afin de gérer les (un-)subscribe
+
     this.headers = [
       "State",
       "TVA",
@@ -53,6 +69,41 @@ export class PageListClientsComponent implements OnInit {
   public changeState(item : Client, event) {
     this.cs.changeState(item, event.target.value).subscribe((result) => {
       item.state = result.state;
+    });
+  }
+
+  public onRightClick(item: Client, event) {
+    event.preventDefault();
+    this.cs.delete(item).subscribe((result) => {
+      this.cs.collection.subscribe((col) => {
+        this.collection$.next(col);
+      })
+    })
+  }
+
+  public getFieldId(item: Client, fieldName: string) : string {
+    return 'clients-' + fieldName + '-' + item.id;
+  }
+  public isEditing(item: Client, fieldName: string) : boolean {
+    return this.getFieldId(item, fieldName) == this.editingId;
+  }
+
+  public onClick(item: Client, event) {
+    this.editingId = event.target.id;
+  }
+
+  public onDblClick(item: Client, event) {
+    this.router.navigate(['edit/'+ item.id], {relativeTo: this.route});
+  }
+
+  public changeTva(item : Client, event) {
+    console.log("changeTva");
+    this.cs.changeTva(item, event.target.value).subscribe((result) => {
+      console.log("tva", event.target.value);
+      this.cs.collection.subscribe((col) => {
+        this.collection$.next(col);
+        this.editingId = null;
+      })
     });
   }
 }

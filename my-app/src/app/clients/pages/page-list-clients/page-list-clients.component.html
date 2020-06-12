@@ -1,12 +1,18 @@
 <app-template-b title="Clients" subtitle="All clients">
-  <app-table-dark *ngIf="collection" [headers]="headers">
-    <tr appActive *ngFor="let item of collection" [appActiveState]="item.state">
+  <app-table-dark *ngIf="collection$ | async as collection" [headers]="headers">
+    <tr appActive *ngFor="let item of collection" [appActiveState]="item.state"
+      (contextmenu)="onRightClick(item, $event)"
+      (dblclick)="onDblClick(item, $event)"
+      placement="left" ngbTooltip="Right-click to delete. Simple-click to edit a field. Dbl-click to full edit.">
       <td>
         <select (change)="changeState(item, $event)">
           <option *ngFor="let state of states" [value]="state" [selected]="item.state === state">{{ state }}</option>
         </select>
       </td>
-      <td>{{ item.tva }}</td>
+      <td>
+        <div [ngClass]="{'hiddenDiv':isEditing(item, 'tva')}" [id]="getFieldId(item, 'tva')" (click)="onClick(item, $event)">{{ item.tva }}</div>
+        <div [ngClass]="{'hiddenDiv':!isEditing(item, 'tva')}" [id]="getFieldId(item, 'tvaInput')"><input type="number" [value]="item.tva" (focusout)="changeTva(item, $event)"/></div>
+      </td>
       <td>{{ item.id }}</td>
       <td>{{ item.name }}</td>
       <td>{{ item.ca | currency:"EUR" }}</td>
@@ -16,4 +22,5 @@
   <app-btn [label]="btnRoute.label" [route]="btnRoute.route"></app-btn>
   <app-btn [label]="btnHref.label" [href]="btnHref.href"></app-btn>
   <app-btn [label]="btnAction.label" [action]="btnAction.action" (clicked)="openPopUp()"></app-btn>
+
 </app-template-b>

@@ -5,7 +5,7 @@ import { PageAddOrderComponent } from './pages/page-add-order/page-add-order.com
 
 
 const routes: Routes = [
-  { path: '', component: PageListOrdersComponent },
+  { path: '', component: PageListOrdersComponent, data: { title: "Orders", subtitle: "All orders"} },
   { path: 'add', component: PageAddOrderComponent },
 ];
 

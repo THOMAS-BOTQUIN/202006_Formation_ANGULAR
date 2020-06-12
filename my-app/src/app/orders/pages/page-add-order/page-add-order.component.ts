@@ -16,7 +16,7 @@ export class PageAddOrderComponent implements OnInit, OnDestroy {
 
   constructor(private os: OrdersService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    public route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.title = "Orders";

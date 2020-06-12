@@ -1,6 +1,5 @@
-<app-template-a [title]="title" [subtitle]="subtitle">
+<app-template-a *ngIf="route.data | async as datas" [title]="datas.title" [subtitle]="datas.subtitle">
   <app-form-add-order (clicked)="add($event)"></app-form-add-order>
-  <div>
-    <a class="btn btn-primary" routerLink="../">Retour</a>
-  </div>
+  <br/>
+  <a class="btn btn-primary" routerLink="../">Retour</a>
 </app-template-a>

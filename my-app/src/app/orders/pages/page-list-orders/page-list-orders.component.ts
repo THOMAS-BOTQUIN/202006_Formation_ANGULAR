@@ -4,7 +4,7 @@ import { OrdersService } from '../../services/orders.service'
 import { Order } from 'src/app/shared/models/orders';
 import { StateOrder } from 'src/app/shared/enums/state-order.enum';
 import { Btn } from 'src/app/shared/interfaces/btn-i';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-page-list-orders',
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./page-list-orders.component.scss']
 })
 export class PageListOrdersComponent implements OnInit {
-  public collection$: Observable<Order[]>;
+  public collection$: Subject<Order[]> = new Subject();
   // public collection : Order[];
   public headers: string[];
   public states = Object.values(StateOrder);
@@ -27,7 +27,9 @@ export class PageListOrdersComponent implements OnInit {
     // this.os.collection.subscribe((datas) => {
     //   this.collection = datas;
     // });
-    this.collection$ = this.os.collection; // utilisation du pipe async afin de gérer les (un-)subscribe
+    this.os.collection.subscribe((result) => {
+      this.collection$.next(result);
+    }); // utilisation du pipe async afin de gérer les (un-)subscribe
     this.headers = [
       "Type Presta",
       "Nb Jours",

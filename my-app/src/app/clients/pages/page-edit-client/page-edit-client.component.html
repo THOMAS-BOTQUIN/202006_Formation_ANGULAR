@@ -1,0 +1,5 @@
+<app-template-a>
+  <app-form-add-client *ngIf="item$ | async as item" [item]="item" (clicked)="edit($event)"></app-form-add-client>
+  <br/>
+  <a class="btn btn-primary" routerLink="../../">Retour</a>
+</app-template-a>

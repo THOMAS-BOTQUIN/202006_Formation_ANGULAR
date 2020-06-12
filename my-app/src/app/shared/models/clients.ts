@@ -2,8 +2,8 @@ import { StateClient } from "../enums/state-client.enum";
 import { ClientI } from "../interfaces/client-i";
 
 export class Client implements ClientI {
-  state = StateClient.ACTIVE;
-  tva = 20;
+  state: StateClient;
+  tva: number;
   id: number;
   name: string;
   ca: number;

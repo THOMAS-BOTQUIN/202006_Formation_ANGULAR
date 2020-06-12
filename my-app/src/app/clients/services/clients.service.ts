@@ -31,13 +31,32 @@ export class ClientsService {
     this.pCollection = coll;
   }
 
-  private updateItem(item: Client) : Observable<Client> {
+  public updateItem(item: Client) : Observable<Client> {
     return this.http.put<Client>(`${this.urlApi}clients/${item.id}`, item);
   }
 
   public changeState(item: Client, value: StateClient) : Observable<Client> {
     const obj = new Client({...item});
     obj.state = value;
+    return this.updateItem(obj);
+  }
+
+  public get(id: string) : Observable<Client> {
+    return this.http.get<Client>(`${this.urlApi}clients/${id}`);
+  }
+
+  public add(item: Client) : Observable<Client> {
+    return this.http.post<Client>(`${this.urlApi}clients`, item);
+  }
+
+  public delete(item: Client) : Observable<Client>{
+    return this.http.delete<Client>(`${this.urlApi}clients/${item.id}`);
+  }
+
+  public changeTva(item: Client, value: number) : Observable<Client> {
+    const obj = new Client({...item});
+    obj.tva = value;
+    console.log("tva", obj.tva);
     return this.updateItem(obj);
   }
 }

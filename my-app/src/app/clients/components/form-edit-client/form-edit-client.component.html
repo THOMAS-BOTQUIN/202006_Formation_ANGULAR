@@ -1,0 +1,39 @@
+<div class="container">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="state">state</label>
+      <select type="text" formControlName="state" class="form-control" id="state">
+        <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="tva">tva</label>
+      <input type="text" formControlName="tva" class="form-control" id="tva">
+      <div *ngIf="form.get('tva').invalid && form.get('tva').touched">Champ invalide</div>
+      <div *ngIf="form.get('tva').errors.required && form.get('tva').touched">Champ obligatoire</div>
+      <div *ngIf="form.get('tva').errors.min && form.get('tva').touched">La valeur doit être positive</div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">name</label>
+      <input type="text" formControlName="name" class="form-control" id="name">
+      <div *ngIf="form.get('name').invalid && form.get('name').touched">Champ invalide</div>
+    </div>
+
+    <div class="form-group">
+      <label for="ca">ca</label>
+      <input type="number" formControlName="ca" class="form-control" id="ca">
+    </div>
+
+    <div class="form-group">
+      <label for="comment">comment</label>
+      <textarea formControlName="comment" class="form-control" id="comment"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+  </form>
+</div>

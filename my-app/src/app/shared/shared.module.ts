@@ -10,16 +10,17 @@ import { RouterModule } from '@angular/router';
 import { ActiveDirective } from './directives/active.directive';
 import { TemplatesModule } from '../templates/templates.module';
 import { TextModule } from '../text/text.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
 @NgModule({
   declarations: [TableLightComponent, BtnComponent, TotalPipe, StateDirective, GreaterDirective, TableDarkComponent, ActiveDirective],
   imports: [
-    CommonModule, RouterModule, TemplatesModule, TextModule
+    CommonModule, RouterModule, TemplatesModule, TextModule, NgbModule
   ],
   exports: [
-    TableLightComponent, BtnComponent, TotalPipe, StateDirective, GreaterDirective, TableDarkComponent, ActiveDirective, TemplatesModule, TextModule
+    TableLightComponent, BtnComponent, TotalPipe, StateDirective, GreaterDirective, TableDarkComponent, ActiveDirective, TemplatesModule, TextModule, NgbModule
   ]
 })
 export class SharedModule { }
